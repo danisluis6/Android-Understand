@@ -5,6 +5,7 @@
     - [What is the purpose of class context](#what-is-the-purpose-of-class-context)
   - [Intent](#intent)
     - [Starting intent from onclicklistener](#starting-intent-from-onclicklistener)
+    - [How to send data in intent](#how-to-send-data-in-intent)
   - [AndroidManifest](#androidmanifest) 
     - [How to declare activity in manifest](#how-to-declare-activity-in-manifest)
 
@@ -86,6 +87,32 @@ It allows access to application-specific resources and classes, as well as up-ca
 	    </application>
 
 	</manifest>
+
+##How to send data in intent
+
+    Way 1: 
+
+    protected void addListenerOnButton(){
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context.getApplicationContext(),Level3Activity.class);
+                inputMessage(intent);
+                startActivity(intent);
+            }
+        });
+    }
+
+    protected void inputMessage(Intent intent){
+        intent.putExtra("message",String.valueOf(edt.getText()));
+        Log.d("message",String.valueOf(edt.getText()));
+    }
+
+    Toast.makeText(context.getApplicationContext(),String.valueOf(intent.getStringExtra("message")),Toast.LENGTH_LONG).show();
+
+   Way 2:
+
+   
 
 
 
